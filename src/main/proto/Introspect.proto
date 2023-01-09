@@ -1,0 +1,14 @@
+syntax = "proto3";
+package io.github.diauweb.sculk;
+
+import "google/protobuf/empty.proto";
+
+service Introspect {
+  rpc Ping (google.protobuf.Empty) returns (PingRsp);
+}
+
+message PingRsp {
+  int32 protoVersion = 1;
+  string gameVersion = 2;
+  string description = 3;
+}

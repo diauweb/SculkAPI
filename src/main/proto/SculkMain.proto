@@ -1,0 +1,6 @@
+syntax = "proto3";
+package io.github.diauweb.sculk;
+
+import "BlockControl.proto";
+import "EntityControl.proto";
+import "Introspect.proto";

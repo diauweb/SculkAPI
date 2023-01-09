@@ -1,0 +1,41 @@
+syntax = "proto3";
+package io.github.diauweb.sculk;
+
+import "google/protobuf/empty.proto";
+import "Nbt.proto";
+import "CommonType.proto";
+
+service BlockControl {
+  rpc GetBlock(GetBlockReq) returns (GetBlockRsp);
+  rpc SetBlock(SetBlockReq) returns (google.protobuf.Empty);
+}
+
+message BlockState {
+  map<string, string> state = 1;
+}
+
+message BlockStateProto {
+  message BlockStateProtoItem {
+    string name = 1;
+    repeated string values = 2;
+  }
+  repeated BlockStateProtoItem states = 1;
+}
+
+message GetBlockReq {
+  BlockPos pos = 1;
+  string world = 2;
+}
+
+message GetBlockRsp {
+  string name = 1;
+  optional BlockState state = 2;
+  optional NbtElement data = 3;
+}
+
+message SetBlockReq {
+  BlockPos pos = 1;
+  string world = 2;
+  optional BlockState state = 3;
+  optional NbtElement data = 4;
+}

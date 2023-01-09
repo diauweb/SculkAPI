@@ -1,0 +1,62 @@
+syntax = "proto3";
+package io.github.diauweb.sculk;
+
+import "google/protobuf/empty.proto";
+import "Nbt.proto";
+import "CommonType.proto";
+
+option java_package = "io.github.diauweb.sculk.proto";
+
+service EntityControl {
+  rpc ListEntity (google.protobuf.Empty) returns (stream ListEntityRsp);
+  rpc QueryEntityField (QueryEntityFieldReq) returns (QueryEntityFieldRsp);
+  rpc GetEntityField (GetEntityFieldReq) returns (GetEntityFieldRsp);
+  rpc SetEntityField (SetEntityFieldReq) returns (google.protobuf.Empty);
+  rpc NewEntity (NewEntityReq) returns (NewEntityRsp);
+  rpc DeleteEntity (DeleteEntityReq) returns (google.protobuf.Empty);
+}
+
+message ListEntityRsp {
+  string uuid = 1;
+  string type = 2;
+  string world = 3;
+}
+
+message GetEntityFieldReq {
+  string uuid = 1;
+  Path path = 2;
+}
+
+message GetEntityFieldRsp {
+  optional NbtElement value = 1;
+}
+
+message SetEntityFieldReq {
+  string uuid = 1;
+  Path path = 2;
+  NbtElement value = 3;
+}
+
+message QueryEntityFieldReq {
+  string uuid = 1;
+  optional Path path = 2;
+}
+
+message QueryEntityFieldRsp {
+  map<string, NbtType> fields = 1;
+}
+
+message NewEntityReq {
+  string type = 1;
+  string world = 2;
+  Vec3 pos = 3;
+  optional NbtElement fields = 4;
+}
+
+message NewEntityRsp {
+  string uuid = 1;
+}
+
+message DeleteEntityReq {
+  string uuid = 1;
+}

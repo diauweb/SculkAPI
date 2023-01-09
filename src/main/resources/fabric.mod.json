@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "sculk-api",
+  "version": "${version}",
+  "name": "Sculk Remote API",
+  "description": "gRPC based Minecraft Remote Management API",
+  "authors": ["Xiaodai Dai"],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/mcfs/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "io.github.diauweb.sculk.SculkApiMod"
+    ]
+  },
+  "mixins": [
+    "sculk-api.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.12",
+    "fabric": "*",
+    "minecraft": "1.19.3"
+  }
+}

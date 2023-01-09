@@ -1,0 +1,42 @@
+syntax = "proto3";
+package io.github.diauweb.sculk;
+
+enum NbtType {
+  TAG_END = 0;
+  TAG_BYTE = 1;
+  TAG_SHORT = 2;
+  TAG_INT = 3;
+  TAG_LONG = 4;
+  TAG_FLOAT = 5;
+  TAG_DOUBLE = 6;
+  TAG_BYTE_ARRAY = 7;
+  TAG_STRING = 8;
+  TAG_LIST = 9;
+  TAG_COMPOUND = 10;
+  TAG_INT_ARRAY = 11;
+  TAG_LONG_ARRAY = 12;
+}
+
+message NbtElement {
+  NbtType type = 1;
+  oneof value {
+    int64 intValue = 2;
+    string stringValue = 3;
+    double floatValue = 4;
+    NbtCompound compoundValue = 5;
+    NbtList listValue = 6;
+    bytes arrayValue = 7;
+  };
+}
+
+message NbtCompound {
+  map<string, NbtElement> object = 1;
+}
+
+message NbtList {
+  repeated NbtElement list = 1;
+}
+
+message Path {
+  repeated string path = 1;
+}

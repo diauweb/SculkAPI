@@ -1,0 +1,14 @@
+syntax = "proto3";
+package io.github.diauweb.sculk;
+
+message Vec3 {
+  double x = 1;
+  double y = 2;
+  double z = 3;
+}
+
+message BlockPos {
+  int32 x = 1;
+  int32 y = 2;
+  int32 z = 3;
+}
